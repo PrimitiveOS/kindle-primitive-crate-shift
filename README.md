@@ -1,6 +1,6 @@
-# Crate Shift
+# Sokoban
 
-Crate Shift is an offline warehouse puzzle for PrimitiveOS. Move the worker through eight original layouts and push every crate onto a marked dock.
+Sokoban is an offline warehouse puzzle for PrimitiveOS. Move the worker through eight original layouts and push every crate onto a marked dock.
 
 | First delivery | Staging floor in dark mode |
 | --- | --- |
@@ -8,14 +8,14 @@ Crate Shift is an offline warehouse puzzle for PrimitiveOS. Move the worker thro
 
 ## How to play
 
-- Tap a square next to the worker or use the direction buttons to move one square.
+- Swipe across the board, tap a square next to the worker, or use the direction buttons to move one square.
 - Walk into a crate to push it. The square behind it must be free.
 - Use **Undo** to take back a move, including after you solve a puzzle.
 - Use **Previous** and **Next** to choose a puzzle. The game saves your position and undo history for every layout.
 
 ## Install and preview
 
-Open **Store** from Primitive Launcher and search for **Crate Shift**. See the [installation guide](INSTALL.md) for package details.
+Open **Store** from Primitive Launcher and search for **Sokoban**. See the [installation guide](INSTALL.md) for package details.
 
 Keep the shared Tools and Launcher repositories alongside this app to render the preview locally.
 

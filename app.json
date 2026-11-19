@@ -2,7 +2,7 @@
   "schema": 1,
   "id": "primitive-crateshift",
   "dir": "crateshift",
-  "name": "Crate Shift",
+  "name": "Sokoban",
   "subtitle": "Push crates onto marked docks",
   "developer": {
     "name": "Primitive AI"
@@ -10,7 +10,7 @@
   "categories": [
     "games"
   ],
-  "description": "Guide a warehouse worker through eight original puzzles. Push each crate onto a marked dock and use Undo when you need to rethink a move. Your puzzle resumes where you left it.",
+  "description": "Swipe or tap to guide a warehouse worker through eight original puzzles. Push each crate onto a marked dock and use Undo when you need to rethink a move. Your puzzle resumes where you left it.",
   "repo": "https://github.com/DoanNguyenTrong/kindle-primitive-crateshift",
   "licence": "PolyForm-Noncommercial-1.0.0",
   "source": "hosted",

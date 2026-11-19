@@ -67,6 +67,28 @@ impl View {
         }
     }
 
+    fn swipe(&mut self, dx: f32, dy: f32, start_y: f32) -> Change {
+        let width = WIDTH as i32;
+        let top = board_cell(width, 0, 0).y as f32;
+        let bottom = board_cell(width, 0, ROWS - 1).bottom() as f32;
+        if !(top..bottom).contains(&start_y) || dx.abs().max(dy.abs()) < 40.0 {
+            return Change::None;
+        }
+
+        let direction = if dx.abs() > dy.abs() {
+            if dx > 0.0 {
+                Direction::Right
+            } else {
+                Direction::Left
+            }
+        } else if dy > 0.0 {
+            Direction::Down
+        } else {
+            Direction::Up
+        };
+        self.step(direction)
+    }
+
     fn select(&mut self, index: usize) -> Change {
         if self.game.select(index) {
             self.changed(Change::Full)
@@ -190,7 +212,7 @@ impl View {
 impl App for View {
     fn draw(&self, canvas: &mut Canvas) {
         let width = canvas.bounds().w;
-        header(canvas, "Crate Shift", "Done");
+        header(canvas, "Sokoban", "Done");
         let index = self.game.active();
         let puzzle = self.game.puzzle();
         canvas.card(screen_rect(width, 40, 165, 1184, 109));
@@ -252,7 +274,7 @@ impl App for View {
         let detail = self.notice.unwrap_or(if puzzle.complete() {
             "Pick another puzzle or undo your last move."
         } else {
-            "Tap an adjacent square or use the direction buttons."
+            "Swipe or tap next to the worker to move."
         });
         canvas.text(
             screen_rect(width, 40, 1590, 1184, 70),
@@ -267,6 +289,9 @@ impl App for View {
     fn input(&mut self, input: Input) -> Change {
         match input {
             Input::Tap(x, y) => self.tap(x, y),
+            Input::Swipe { dx, dy, start_y } if !self.confirming_reset => {
+                self.swipe(dx, dy, start_y)
+            }
             Input::PageBack if self.confirming_reset => {
                 self.confirming_reset = false;
                 Change::Full
@@ -334,4 +359,37 @@ pub fn draw_icon(canvas: &mut Canvas) {
     canvas.icon(Rect::new(78, 62, 100, 100), CRATE, PAPER);
     canvas.fill(Rect::new(61, 190, 22, 16), BLACK);
     canvas.fill(Rect::new(173, 190, 22, 16), BLACK);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn swipe(dx: f32, dy: f32, start_y: f32) -> Input {
+        Input::Swipe { dx, dy, start_y }
+    }
+
+    #[test]
+    fn board_swipes_use_the_dominant_axis_with_vertical_ties() {
+        let mut app = View::preview();
+        assert_eq!(app.game.puzzle().worker(), (2, 4));
+        assert_eq!(app.input(swipe(90.0, 65.0, 830.0)), Change::Partial);
+        assert_eq!(app.game.puzzle().worker(), (3, 4));
+        assert_eq!(app.input(swipe(-80.0, -80.0, 830.0)), Change::Partial);
+        assert_eq!(app.game.puzzle().worker(), (3, 3));
+        assert_eq!(app.game.puzzle().moves(), 2);
+    }
+
+    #[test]
+    fn short_off_board_and_modal_swipes_leave_the_worker_in_place() {
+        let mut app = View::preview();
+        assert_eq!(app.input(swipe(25.0, -20.0, 830.0)), Change::None);
+        assert_eq!(app.input(swipe(90.0, 65.0, 200.0)), Change::None);
+        assert_eq!(app.input(swipe(90.0, 65.0, 1450.0)), Change::None);
+        assert_eq!(app.input(swipe(90.0, 65.0, 830.0)), Change::Partial);
+        assert_eq!(app.input(Input::Tap(790.0, 1500.0)), Change::Full);
+        assert_eq!(app.input(swipe(90.0, 65.0, 830.0)), Change::None);
+        assert_eq!(app.game.puzzle().worker(), (3, 4));
+        assert_eq!(app.game.puzzle().moves(), 1);
+    }
 }

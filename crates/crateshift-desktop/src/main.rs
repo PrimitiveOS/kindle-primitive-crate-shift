@@ -30,9 +30,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         &frame(&app, &mut canvas, false),
     )?;
 
-    for _ in 0..2 {
-        assert_eq!(app.input(Input::Tap(1050.0, 1374.0)), Change::Partial);
-    }
+    assert_eq!(
+        app.input(Input::Swipe {
+            dx: 170.0,
+            dy: 30.0,
+            start_y: 954.0
+        }),
+        Change::Partial
+    );
+    assert_eq!(app.input(Input::Tap(1050.0, 1374.0)), Change::Partial);
     assert_eq!(app.input(Input::Tap(210.0, 1374.0)), Change::Partial);
     assert!(app.game.puzzle().complete());
     assert_eq!(app.input(Input::Tap(460.0, 1500.0)), Change::Partial);
