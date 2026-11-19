@@ -2,8 +2,8 @@
   "schema": 1,
   "id": "primitive-crateshift",
   "dir": "crateshift",
-  "name": "Sokoban",
-  "subtitle": "Push crates onto marked docks",
+  "name": "Crate Shift",
+  "subtitle": "Original box-pushing puzzles",
   "developer": {
     "name": "Primitive AI"
   },

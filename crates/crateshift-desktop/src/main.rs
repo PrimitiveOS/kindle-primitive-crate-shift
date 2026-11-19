@@ -5,7 +5,7 @@ use std::{
 
 use crateshift_render::{draw_icon, View};
 use primitive_app::{font_paths, frame, write_png, App, Change, HEIGHT, WIDTH};
-use primitive_ui::{Canvas, Input};
+use primitive_ui::{screen_rect, Canvas, Input, BLACK, PAPER};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let output = PathBuf::from(
@@ -29,6 +29,18 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         HEIGHT,
         &frame(&app, &mut canvas, false),
     )?;
+
+    let mut dock_view = View::preview();
+    for x in [210.0, 210.0, 1050.0, 1050.0] {
+        assert_eq!(dock_view.input(Input::Tap(x, 1374.0)), Change::Partial);
+    }
+    let dock = screen_rect(WIDTH as i32, 632, 620, 140, 140);
+    let column = (dock.x + dock.w / 2) as usize;
+    let rim = (dock.y + canvas.px(16)) as usize * WIDTH as usize + column;
+    let gap = (dock.y + canvas.px(21)) as usize * WIDTH as usize + column;
+    let occupied = frame(&dock_view, &mut canvas, false);
+    assert_eq!(occupied[rim], BLACK);
+    assert_eq!(occupied[gap], PAPER);
 
     assert_eq!(
         app.input(Input::Swipe {

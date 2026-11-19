@@ -124,14 +124,14 @@ dependencies = [
 
 [[package]]
 name = "crateshift-core"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "serde",
 ]
 
 [[package]]
 name = "crateshift-desktop"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "crateshift-core",
  "crateshift-render",
@@ -141,7 +141,7 @@ dependencies = [
 
 [[package]]
 name = "crateshift-kindle"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "crateshift-core",
  "crateshift-render",
@@ -150,7 +150,7 @@ dependencies = [
 
 [[package]]
 name = "crateshift-render"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "crateshift-core",
  "primitive-app",

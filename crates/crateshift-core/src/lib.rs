@@ -92,6 +92,7 @@ pub enum Tile {
     Crate,
     DockedCrate,
     Worker,
+    WorkerOnDock,
 }
 
 #[derive(Clone, Copy)]
@@ -146,7 +147,11 @@ impl Puzzle {
         if self.walls & spot != 0 {
             Tile::Wall
         } else if (column, row) == self.position.worker {
-            Tile::Worker
+            if self.docks & spot != 0 {
+                Tile::WorkerOnDock
+            } else {
+                Tile::Worker
+            }
         } else {
             match (self.position.crates & spot != 0, self.docks & spot != 0) {
                 (true, true) => Tile::DockedCrate,
@@ -345,6 +350,25 @@ mod tests {
         assert_eq!(restored.puzzle().worker(), (4, 4));
         assert!(restored.puzzle_mut().push(Direction::Up));
         assert!(restored.puzzle().complete());
+    }
+
+    #[test]
+    fn a_vacant_dock_stays_identifiable_when_the_worker_crosses_it() {
+        let mut game = Game::default();
+        let puzzle = game.puzzle_mut();
+        assert_eq!(puzzle.tile(4, 2), Tile::Dock);
+        for direction in [
+            Direction::Up,
+            Direction::Up,
+            Direction::Right,
+            Direction::Right,
+        ] {
+            assert!(puzzle.push(direction));
+        }
+        assert_eq!(puzzle.tile(4, 2), Tile::WorkerOnDock);
+        assert!(!puzzle.complete());
+        assert!(puzzle.push(Direction::Up));
+        assert_eq!(puzzle.tile(4, 2), Tile::Dock);
     }
 
     #[test]

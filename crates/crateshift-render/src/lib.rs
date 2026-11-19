@@ -170,7 +170,11 @@ impl View {
                         canvas.icon(inset.inset(canvas.px(13)), RACK, PAPER);
                     }
                     Tile::Floor => {}
-                    Tile::Worker => {
+                    Tile::Worker | Tile::WorkerOnDock => {
+                        if tile == Tile::WorkerOnDock {
+                            canvas.circle(bounds.inset(canvas.px(14)), ink);
+                            canvas.circle(bounds.inset(canvas.px(19)), ground);
+                        }
                         let person = bounds.inset(length);
                         let head = person.inset(canvas.px(25));
                         canvas.circle(person, ink);
@@ -212,7 +216,7 @@ impl View {
 impl App for View {
     fn draw(&self, canvas: &mut Canvas) {
         let width = canvas.bounds().w;
-        header(canvas, "Sokoban", "Done");
+        header(canvas, "Crate Shift", "Done");
         let index = self.game.active();
         let puzzle = self.game.puzzle();
         canvas.card(screen_rect(width, 40, 165, 1184, 109));
