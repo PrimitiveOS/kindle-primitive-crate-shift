@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "id": "primitive-crateshift",
+  "dir": "crateshift",
+  "name": "Crate Shift",
+  "subtitle": "Push crates onto marked docks",
+  "developer": {
+    "name": "Primitive AI"
+  },
+  "categories": [
+    "games"
+  ],
+  "description": "Guide a warehouse worker through eight original puzzles. Push each crate onto a marked dock and use Undo when you need to rethink a move. Your puzzle resumes where you left it.",
+  "repo": "https://github.com/DoanNguyenTrong/kindle-primitive-crateshift",
+  "licence": "PolyForm-Noncommercial-1.0.0",
+  "source": "hosted",
+  "icon": "icon.png",
+  "changes": {
+    "network": false,
+    "stops_kindle_ui": false,
+    "starts_at_boot": false,
+    "root_filesystem": false,
+    "hooks": false
+  },
+  "versions": []
+}

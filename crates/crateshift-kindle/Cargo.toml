@@ -1,0 +1,10 @@
+[package]
+name = "crateshift-kindle"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+crateshift-core.workspace = true
+crateshift-render.workspace = true
+primitive-app.workspace = true
