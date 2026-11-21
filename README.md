@@ -1,29 +1,49 @@
+<div align="center">
+
+<img src="icon.png" alt="Crate Shift icon" width="110">
+
 # Crate Shift
 
-Crate Shift is an offline box-pushing game for PrimitiveOS. Move the worker through eight original layouts and push every crate onto a marked dock.
+**Original box-pushing puzzles**
 
-| First delivery | Staging floor in dark mode |
-| --- | --- |
-| <img src="docs/images/crateshift.png" alt="First delivery, with a worker, crate, and dock on a small board" width="300"> | <img src="docs/images/crateshift-playing.png" alt="Staging floor in dark mode, with four crates and a row of marked docks" width="300"> |
+[![Release](https://img.shields.io/github/v/release/PrimitiveOS/kindle-primitive-crate-shift?label=release)](https://github.com/PrimitiveOS/kindle-primitive-crate-shift/releases) [![Licence: PolyForm-Noncommercial-1.0.0](https://img.shields.io/badge/licence-PolyForm--Noncommercial--1.0.0-blue)](LICENSE) [![Store downloads](https://img.shields.io/badge/Store%20downloads-53-brightgreen)](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json)
 
-## How to play
+[**Download**](https://github.com/PrimitiveOS/kindle-primitive-crate-shift/releases/latest) · [**Install guide**](INSTALL.md) · [**Changelog**](CHANGELOG.md)
 
-- Swipe across the board, tap a square next to the worker, or use the direction buttons to move one square.
-- Walk into a crate to push it. The square behind it must be free.
-- Use **Undo** to take back a move, including after you solve a puzzle.
-- Use **Previous** and **Next** to choose a puzzle. The game saves your position and undo history for every layout.
+</div>
 
-## Install and preview
+---
 
-Open **Store** from Primitive Launcher and search for **Crate Shift**. See the [installation guide](INSTALL.md) for package details.
+Swipe or tap to guide a warehouse worker through eight original puzzles. Push each crate onto a marked dock and use Undo when you need to rethink a move. Your puzzle resumes where you left it.
 
-Keep the shared Tools and Launcher repositories alongside this app to render the preview locally.
+## Quick start
 
-```sh
-cargo test --workspace --locked
-cargo run --locked -p crateshift-desktop -- build/previews
-```
+After setting up PrimitiveOS, open **Store** from Primitive Launcher. Choose **Crate Shift** under **Apps**,
+tap **Get**, and open it from the Launcher grid. The [install guide](INSTALL.md) also covers the standalone USB package.
 
-## License
+## Highlights
+
+- Swipe or tap to guide a warehouse worker through eight original puzzles.
+- Push each crate onto a marked dock and use Undo when you need to rethink a move.
+- Your puzzle resumes where you left it.
+
+## Status
+
+| Device | Status |
+|---|---|
+| Kindle Oasis 3 (1264 × 1680, firmware 5.18.2) | Tested on hardware |
+
+**Current version: 0.1.3.** Changes are in [CHANGELOG.md](CHANGELOG.md).
+
+## Downloads
+
+**53 downloads** from Store, as of 2026-11-21. Store shows the same count on the app page.
+The count is GitHub downloads of this app's release packages, from the [Store catalog](https://primitiveos.github.io/kindle-primitive-catalog/v1/index.json).
+
+## Documentation
+
+[Install guide](INSTALL.md) · [Changelog](CHANGELOG.md)
+
+## Licence
 
 The code uses the [PolyForm Noncommercial 1.0.0 license](LICENSE). Documentation, artwork, and screenshots use the [CC BY-NC-SA 4.0 license](LICENSE-DOCS).
