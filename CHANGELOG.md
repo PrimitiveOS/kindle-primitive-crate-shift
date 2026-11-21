@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.4
+
+- The library icon has a dark form, shown in dark mode.
+
 ## 0.1.2
 
 - Restore the Crate Shift title for the original box-pushing puzzles.
