@@ -216,7 +216,7 @@ impl View {
 impl App for View {
     fn draw(&self, canvas: &mut Canvas) {
         let width = canvas.bounds().w;
-        header(canvas, "Crate Shift", "Done");
+        header(canvas, "Crate Shift", "Exit");
         let index = self.game.active();
         let puzzle = self.game.puzzle();
         canvas.card(screen_rect(width, 40, 165, 1184, 109));
